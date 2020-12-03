@@ -1,6 +1,5 @@
 CS50 Finance implementation using Flask
 Dmitry Argunov @ 'muhoed'
-dargunov @ yahoo.com
 
 The application is my solution for the CSS0 Intoduction to Computer science on-line course / block 'Tracks' / task 'Web - Finance'. 
 Requirements and distribution base code are here: https://cs50.harvard.edu/x/2020/tracks/web/finance/.
