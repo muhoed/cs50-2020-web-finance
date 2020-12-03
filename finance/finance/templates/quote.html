@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Request quote
+{% endblock %}
+
+{% block main %}
+    <h3>Please enter symbol of stock ticker</h3>
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol"
+            placeholder="stock ticker symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Request</button>
+    </form>
+{% endblock %}

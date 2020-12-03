@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction history
+{% endblock %}
+
+{% block main %}
+    <h3>Transactions history</h3>
+    <div class="clearfix">
+      <div class="float-left">
+        <label for="sort">Sort by:</label>
+        <select id="sort" name="sort" onchange="sortTable(this.value, '', 'history');">
+          <option value="symbol">Ticker</option>
+          <option value="number">Number of shares</option>
+          <option value="amount">Total investment</option>
+          <option value="date">Date</option>
+        </select>
+        <label for="order">Order:</label>
+        <select id="order" name="order" onchange="sortTable('', this.value, 'history');">
+          <option value="asc">Asc</option>
+          <option value="desc">Desc</option>
+        </select>
+      </div>
+      <div class="float-right">
+        <label for="symbol">Filter by ticker symbol:</label>
+        <input type="text" class="form-control" placeholder="Enter ticker symbol" id="filterBy" name="filterBy">
+        <button type="submit" class="btn" onclick="sortTable('', '', 'history');">Filter</button>
+      </div>
+    </div>
+    <div id="sorted">
+
+      {% include "history_table.html" %}
+
+    </div>
+{% endblock %}

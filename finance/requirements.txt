@@ -1,0 +1,10 @@
+Flask-SQLAlchemy
+Flask
+Flask-Session
+SQLAlchemy
+requests
+tempfile
+werkzeug.exceptions
+werkzeug.security
+datetime
+functool

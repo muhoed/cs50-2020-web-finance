@@ -1,0 +1,12 @@
+datetime
+flask
+flask-session
+flask-sqlalchemy
+functool
+sqlalchemy
+sqlalchemy.sql
+requests
+tempfile
+werkzeug.exceptions
+werkzeug.security
+urllib.parse

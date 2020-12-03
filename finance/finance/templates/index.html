@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block main %}
+    <h3>Portfolio summary</h3><br<
+    <label for="sort">Sort by:</label>
+    <select id="sort" name="sort" onchange="sortTable(this.value, '', 'portfolio')">
+      <option value="symbol">Ticker</option>
+      <option value="shares">Number of shares</option>
+      <option value="total">Total investment</option>
+    </select>
+    <label for="order">Order:</label>
+    <select id="order" name="order" onchange="sortTable('', this.value, 'portfolio')">
+      <option value="asc">Asc</option>
+      <option value="desc">Desc</option>
+    </select>
+    <br>
+    <div id="sorted">
+
+      {% include "portfolio_table.html" %}
+
+    </div>
+{% endblock %}
