@@ -1,6 +1,5 @@
 CS50 Finance implementation using Flask
 Author: Dmitry Argunov @ muhoed
-e-Mail: dargunov @ yahoo . com
 
 This is my more advanced implementation of CS50 Finance:
     package approach with dynamic application creation in 'application factory';
