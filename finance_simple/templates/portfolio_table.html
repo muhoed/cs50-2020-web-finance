@@ -1,0 +1,52 @@
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Company name</th>
+            <th>Number of shares</th>
+            <th>Average purchase price</th>
+            <th>Total investment</th>
+            <th>Latest price</th>
+            <th>Market value</th>
+            <th>Unrealized P/L</th>
+            <th colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+              <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["shares"] }}</td>
+                <td>{{ row["avgprice"] }}</td>
+                <td>{{ row["total"] }}</td>
+                <td>{{ row["price"] }}</td>
+                <td>{{ row["mktvalue"] }}</td>
+                <td class="shares">{{ row["unrlz"] }}</td>
+                <td><a href="{{ url_for("buy", symbol = row["symbol"]) }}" class="btn btn-primary"
+                       role="button" title="Buy stock">Buy</a></td>
+                <td> <a href="{{ url_for("sell", symbol = row["symbol"]) }}" class="btn btn-danger"
+                       role="button" title="Sell stock">Sell</a></td>
+              </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="2">Total stocks</td>
+            <td colspan="3" style="text-align:right;">{{ totals["portfolioTotal"] }}</td>
+            <td colspan="2" style="text-align:right;">{{ totals["mktValueTotal"] }}</td>
+            <td class="shares">{{ totals["unrlzTotal"] }}</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td colspan="2">Cash available</td>
+            <td colspan="3" style="text-align:right;">{{ totals["cash"] }}</td>
+            <td colspan="2" style="text-align:right;">{{ totals["cash"] }}</td>
+            <td colspan="3"></td>
+          </tr>
+          <tr>
+            <td colspan="2">Portfolio total</td>
+            <td colspan="3" style="text-align:right;">{{ totals["investedTotal"] }}</td>
+            <td colspan="2" style="text-align:right;">{{ totals["fundsTotal"] }}</td>
+            <td colspan="3"></td>
+          </tr>
+        </tbody>
+      </table>

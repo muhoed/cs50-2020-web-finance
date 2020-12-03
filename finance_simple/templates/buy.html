@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy stock
+{% endblock %}
+
+{% block main %}
+    {% if not quoteInfo: %}
+        <h3>Please enter symbol of stock and number of shares you want to buy</h3>
+        <form action="/buy" method="get">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="symbol"
+                    placeholder="stock ticker symbol" type="text">
+                <input autocomplete="off" autofocus class="form-control" name="shares"
+                    placeholder="number of shares" type="number" min="0">
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    {% endif %}
+    {% if quoteInfo: %}
+        <h3>Please input / correct number of shares and press
+        <span class="badge badge-primary">Buy</span> to confirm</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Ticker symbol</th>
+              <th>Company's name</th>
+              <th>Latest price, usd</th>
+              <th>Number of shares</th>
+              <th>Cash required</th>
+              <th>Cash available</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ quoteInfo["symbol"] }}</td>
+              <td>{{ quoteInfo["name"] }}</td>
+              <td>{{ price }}</td>
+              <td><form action="/buy" method="post">
+                    <input type="hidden" name="symbol" value="{{ quoteInfo["symbol"] }}">
+                    <input type="hidden" name="name" value="{{ quoteInfo["name"] }}">
+                    <input type="hidden" id="price" name="price" value="{{ quoteInfo["price"] }}">
+                    <input autocomplete="off" autofocus class="form-control" id="shares" name="shares"
+                        placeholder="number of shares" type="number" value="{{ shares }}" min="0" oninput="calcCash({{ quoteInfo["price"] }},
+                        this.value)">
+                    <button class="btn btn-primary" type="submit">Buy</button>
+                </form></td>
+                <td id="required" class="shares">{{ required }}</td>
+                <td>{{ cash }}</td>
+            </tr>
+          </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

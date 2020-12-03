@@ -1,0 +1,26 @@
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Stock ticker</th>
+          <th>Company's name</th>
+          <th>Number of shares</th>
+          <th>Price</th>
+          <th>Total amount</th>
+          <th>Type of transaction</th>
+          <th>Date of transaction</th>
+        </tr>
+        </thead>
+      <tbody>
+        {% for row in history: %}
+            <tr>
+              <td>{{ row["symbol"] }}</td>
+              <td>{{ row["name"] }}</td>
+              <td class="shares">{{ row["number"] }}</td>
+              <td class="currency">{{ row["price"] }}</td>
+              <td class="shares currency">{{ row["amount"] }}</td>
+              <td>{{ row["type"] }}</td>
+              <td>{{ row["date"] }}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>

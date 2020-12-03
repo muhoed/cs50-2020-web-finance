@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell stock
+{% endblock %}
+
+{% block main %}
+    {% if list: %}
+        <h3>Please choose stock you want to sell</h3>
+        <form action="/sell" method="get">
+            <select name="symbol" class="custom-select" onchange="this.form.submit()">
+                <option selected>List of owned stock</option>
+                {% for i in list: %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    {% endif %}
+    {% if quoteInfo: %}
+        <h3>Please enter a number of shares you would like to sell and press
+        <span class="badge badge-primary">Sell</span></h3>
+        <table class="table" onload="formatCurr();">
+          <thead>
+            <tr>
+              <th>Ticker symbol</th>
+              <th>Company's name</th>
+              <th>Shares owned</th>
+              <th>Avg.purchase price</th>
+              <th>Total investment</th>
+              <th>Latest market price</th>
+              <th style="color:red;">Number of shares to be sold</th>
+              <th>Estimated proceeds</th>
+              <th>Estimated P/L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ quoteInfo["symbol"] }}</td>
+              <td>{{ quoteInfo["name"] }}</td>
+              <td>{{ sharesOwned }}</td>
+              <td id="avgprice" class="currency">{{ avgPrice }}</td>
+              <td class="currency">{{ amount }}</td>
+              <td class="currency" id="price">{{ quoteInfo["price"] }}</td>
+              <td><form class="form-inline" action="/sell" method="post">
+                    <input type="hidden" name="symbol" value="{{ quoteInfo["symbol"] }}">
+                    <input type="hidden" name="price" value="{{ quoteInfo["price"] }}">
+                    <input type="hidden" name="name" value="{{ quoteInfo["name"] }}">
+                    <input class="form-control" autocomplete="off" autofocus class="form-control" id="shares" name="shares"
+                        placeholder="number of shares" type="number" min="0" size="16" oninput="calcTrans({{ avgPrice }}, {{ quoteInfo["price"] }}, this.value);">
+                    <button class="btn btn-danger" type="submit">Sell</button>
+                </form></td>
+              <td class="currency" id="proceeds"></td>
+              <td class="currency shares" id="pl"></td>
+            </tr>
+          </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
