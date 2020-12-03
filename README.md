@@ -9,13 +9,13 @@ Two variants of solution are presented:
 1)  simplified variant with all-in-one Flask application aproach:
     no blueprints
     CS50 SQL library used to deal with SQLite
-    - 'finance-simple' branch
+    - 'finance-simple'
 2)  more advanced variant of Flask application implementation:
     using package approach with dynamic application creation in 'application factory'; 
     all main groups of functionality are divided into blueprints;
     blueprints have their own resources, i.e. 'templates';
     handling SQLite database connection and other operations through Flask-SQLAlchemy extension
-    - 'master'
+    - 'finance'
 
 The second variant is the main and can be run from current diirectory with 'flask run' assuming all dependencies are installed.
 Flask's 'SECRET_KEY' is not provided assuming it is set in the application environment. Can be added to 'config.py' directly or exported in other suitable way.
